@@ -15,7 +15,7 @@ import com.demo.kt.jpa.entity.User;
 import com.demo.kt.jpa.repository.ProfileRepository;
 import com.demo.kt.jpa.repository.RoleRepository;
 import com.demo.kt.jpa.repository.UserRepository;
-import com.demo.kt.service.RoleService;
+import com.demo.kt.jpa.service.RoleService;
 
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
@@ -32,8 +32,8 @@ class SpringBootH23ApplicationTests {
 	@Resource
 	private RoleRepository roleRepository;
 	
-//	@Autowired
-//	private RoleService roleService;
+	@Autowired
+	private RoleService roleService;
 	
 //	@Test
 //	@Rollback(false)
@@ -183,18 +183,18 @@ class SpringBootH23ApplicationTests {
 	@Transactional
 	@Rollback(false)
 	void contextLoads11() {
-
-		addRoleToUser(3L, 1L);
-		addRoleToUser(3L, 2L);
-		addRoleToUser(4L, 1L);
-		addRoleToUser(5L, 2L);
+//		addRoleToUser(3L, 1L);
+//		addRoleToUser(3L, 2L);
+//		addRoleToUser(4L, 1L);
+//		addRoleToUser(5L, 2L);
+		roleService.addRoleToUser(4L, 2L);
 	}
 	
 	@Test
 	@Transactional
 	@Rollback(false)
 	void contextLoads12() {
-		User user = userRepository.getReferenceById(5L);
+		User user = userRepository.getReferenceById(4l);
 		System.out.println(user);
 	}
 }
