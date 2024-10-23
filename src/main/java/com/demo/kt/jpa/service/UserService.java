@@ -1,6 +1,8 @@
 package com.demo.kt.jpa.service;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +21,29 @@ public class UserService {
 	private ProfileRepository profileRepository;
 	
 	@Transactional
+	public User createUser(User user) {
+		User savedUser = null;
+		savedUser = userRepository.save(user);
+		return savedUser;
+	}
+	
+	@Transactional
 	public User createUser(User user, Profile profile) {
 		User savedUser = null;
 		savedUser = userRepository.save(user);
 		profile.setUser(savedUser);
 		profileRepository.save(profile);
 		return savedUser;
+	}
+	
+	public List<User> list(){
+		return userRepository.findAll();
+	}
+	
+	@Transactional
+	public String deleteUser(Long id) {
+		userRepository.deleteById(id);
+		return "success";
 	}
 	
 }

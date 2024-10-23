@@ -5,6 +5,8 @@ import java.util.Set;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -37,6 +39,7 @@ public class Role extends BaseEntity  {
 	
 	private String roleName;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "T_USERROLE",
 				joinColumns = {@JoinColumn(name = "ROLE_ID")},
